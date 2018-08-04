@@ -1,39 +1,18 @@
 var _user$project$Routing$toPath = function (route) {
 	var _p0 = route;
-	switch (_p0.ctor) {
-		case 'IndexRoute':
-			return '/';
-		case 'LoginRoute':
-			return '/login';
-		case 'RegisterRoute':
-			return '/register';
-		default:
-			return '/not-found';
+	if (_p0.ctor === 'IndexRoute') {
+		return '/';
+	} else {
+		return '/not-found';
 	}
 };
 var _user$project$Routing$NotFoundRoute = {ctor: 'NotFoundRoute'};
-var _user$project$Routing$RegisterRoute = {ctor: 'RegisterRoute'};
-var _user$project$Routing$LoginRoute = {ctor: 'LoginRoute'};
 var _user$project$Routing$IndexRoute = {ctor: 'IndexRoute'};
 var _user$project$Routing$matchers = _evancz$url_parser$UrlParser$oneOf(
 	{
 		ctor: '::',
 		_0: A2(_evancz$url_parser$UrlParser$map, _user$project$Routing$IndexRoute, _evancz$url_parser$UrlParser$top),
-		_1: {
-			ctor: '::',
-			_0: A2(
-				_evancz$url_parser$UrlParser$map,
-				_user$project$Routing$LoginRoute,
-				_evancz$url_parser$UrlParser$s('login')),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_evancz$url_parser$UrlParser$map,
-					_user$project$Routing$RegisterRoute,
-					_evancz$url_parser$UrlParser$s('register')),
-				_1: {ctor: '[]'}
-			}
-		}
+		_1: {ctor: '[]'}
 	});
 var _user$project$Routing$parse = function (location) {
 	var _p1 = A2(_evancz$url_parser$UrlParser$parsePath, _user$project$Routing$matchers, location);

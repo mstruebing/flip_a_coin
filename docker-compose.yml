@@ -9,5 +9,5 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: phoenix_elm_websocket_boilerplate_dev
     volumes:
-     - ${PWD}/data/docker/postgres:/var/lib/postgresql/data
+     - ${PWD}/db:/var/lib/postgresql/data
 

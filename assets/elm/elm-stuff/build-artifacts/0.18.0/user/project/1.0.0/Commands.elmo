@@ -1,15 +1,15 @@
-var _user$project$Commands$ping = function (socketUrl) {
+var _user$project$Commands$flip = function (socketUrl) {
 	var payload = _elm_lang$core$Json_Encode$object(
 		{ctor: '[]'});
 	var push = A2(
 		_saschatimme$elm_phoenix$Phoenix_Push$onError,
-		_user$project$Types$PingError,
+		_user$project$Types$FlipError,
 		A2(
 			_saschatimme$elm_phoenix$Phoenix_Push$onOk,
-			_user$project$Types$PingSuccess,
+			_user$project$Types$FlipSuccess,
 			A2(
 				_saschatimme$elm_phoenix$Phoenix_Push$withPayload,
 				payload,
-				A2(_saschatimme$elm_phoenix$Phoenix_Push$init, 'room', 'room:ping'))));
+				A2(_saschatimme$elm_phoenix$Phoenix_Push$init, 'flip_a_coin', 'flip'))));
 	return A2(_saschatimme$elm_phoenix$Phoenix$push, socketUrl, push);
 };

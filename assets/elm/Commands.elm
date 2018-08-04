@@ -1,4 +1,4 @@
-module Commands exposing (ping)
+module Commands exposing (flip)
 
 import Json.Encode as JE
 import Phoenix exposing (..)
@@ -6,17 +6,17 @@ import Phoenix.Push as Push
 import Types exposing (Msg(..))
 
 
-ping : String -> Cmd Msg
-ping socketUrl =
+flip : String -> Cmd Msg
+flip socketUrl =
     let
         payload =
             JE.object
                 []
 
         push =
-            Push.init "room" "room:ping"
+            Push.init "flip_a_coin" "flip"
                 |> Push.withPayload payload
-                |> Push.onOk PingSuccess
-                |> Push.onError PingError
+                |> Push.onOk FlipSuccess
+                |> Push.onError FlipError
     in
     Phoenix.push socketUrl push

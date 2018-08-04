@@ -1,23 +1,16 @@
-var _user$project$Types$Model = F3(
-	function (a, b, c) {
-		return {userModel: a, route: b, flags: c};
+var _user$project$Types$Model = F2(
+	function (a, b) {
+		return {flags: a, coinStatus: b};
 	});
 var _user$project$Types$Flags = function (a) {
 	return {socketUrl: a};
 };
-var _user$project$Types$PingError = function (a) {
-	return {ctor: 'PingError', _0: a};
+var _user$project$Types$Tail = {ctor: 'Tail'};
+var _user$project$Types$Head = {ctor: 'Head'};
+var _user$project$Types$FlipError = function (a) {
+	return {ctor: 'FlipError', _0: a};
 };
-var _user$project$Types$PingSuccess = function (a) {
-	return {ctor: 'PingSuccess', _0: a};
+var _user$project$Types$FlipSuccess = function (a) {
+	return {ctor: 'FlipSuccess', _0: a};
 };
-var _user$project$Types$UserMsg = function (a) {
-	return {ctor: 'UserMsg', _0: a};
-};
-var _user$project$Types$NavigateTo = function (a) {
-	return {ctor: 'NavigateTo', _0: a};
-};
-var _user$project$Types$UrlChange = function (a) {
-	return {ctor: 'UrlChange', _0: a};
-};
-var _user$project$Types$Noop = {ctor: 'Noop'};
+var _user$project$Types$Flip = {ctor: 'Flip'};

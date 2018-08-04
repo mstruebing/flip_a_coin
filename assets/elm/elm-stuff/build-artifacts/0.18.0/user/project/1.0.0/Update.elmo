@@ -2,45 +2,14 @@ var _user$project$Update$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		switch (_p0.ctor) {
-			case 'Noop':
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-			case 'UrlChange':
-				var currentRoute = _user$project$Routing$parse(_p0._0);
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{route: currentRoute}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'NavigateTo':
+			case 'Flip':
 				return {
 					ctor: '_Tuple2',
 					_0: model,
-					_1: _elm_lang$core$Platform_Cmd$batch(
-						{
-							ctor: '::',
-							_0: _elm_lang$navigation$Navigation$newUrl(
-								_user$project$Routing$toPath(_p0._0)),
-							_1: {
-								ctor: '::',
-								_0: _user$project$Commands$ping(model.flags.socketUrl),
-								_1: {ctor: '[]'}
-							}
-						})
+					_1: _user$project$Commands$flip(model.flags.socketUrl)
 				};
-			case 'UserMsg':
-				var _p1 = A2(_user$project$Modules_User$update, _p0._0, model.userModel);
-				var updatedModel = _p1._0;
-				var cmd = _p1._1;
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{userModel: updatedModel}),
-					_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Types$UserMsg, cmd)
-				};
-			case 'PingSuccess':
+			case 'FlipSuccess':
+				var x = A2(_elm_lang$core$Debug$log, 'message', _p0._0);
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 			default:
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};

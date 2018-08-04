@@ -1,5 +1,5 @@
 var _user$project$Subscriptions$contacts = _saschatimme$elm_phoenix$Phoenix_Channel$withDebug(
-	_saschatimme$elm_phoenix$Phoenix_Channel$init('room'));
+	_saschatimme$elm_phoenix$Phoenix_Channel$init('flip_a_coin'));
 var _user$project$Subscriptions$socket = function (socketUrl) {
 	return _saschatimme$elm_phoenix$Phoenix_Socket$init(socketUrl);
 };

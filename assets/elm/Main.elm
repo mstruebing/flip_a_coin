@@ -1,28 +1,21 @@
 module Main exposing (..)
 
-import Modules.User as User
-import Navigation exposing (Location)
-import Routing exposing (Route(..), parse, toPath)
+import Html exposing (Html)
 import Subscriptions exposing (subscriptions)
-import Types exposing (Flags, Model, Msg(..))
+import Types exposing (CoinStatus(..), Flags, Model, Msg(..))
 import Update exposing (update)
 import View exposing (view)
 
 
-init : Flags -> Navigation.Location -> ( Model, Cmd Msg )
-init flags location =
-    let
-        currentRoute =
-            parse location
-    in
-    initialModel flags currentRoute
+init : Flags -> ( Model, Cmd Msg )
+init flags =
+    initialModel flags
 
 
-initialModel : Flags -> Route -> ( Model, Cmd Msg )
-initialModel flags route =
-    ( { userModel = User.initialModel flags.socketUrl
-      , route = route
-      , flags = flags
+initialModel : Flags -> ( Model, Cmd Msg )
+initialModel flags =
+    ( { flags = flags
+      , coinStatus = Head
       }
     , Cmd.none
     )
@@ -30,13 +23,9 @@ initialModel flags route =
 
 main : Program Flags Model Msg
 main =
-    Navigation.programWithFlags UrlChange
+    Html.programWithFlags
         { init = init
         , view = view
         , update = update
         , subscriptions = subscriptions
         }
-
-
-
--- VIEW

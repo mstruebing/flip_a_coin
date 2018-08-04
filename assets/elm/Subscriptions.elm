@@ -18,5 +18,5 @@ socket socketUrl =
 
 contacts : Channel Msg
 contacts =
-    Channel.init "room"
+    Channel.init "flip_a_coin"
         |> Channel.withDebug

@@ -1,16 +1,17 @@
-module Types exposing (Flags, Model, Msg(..))
+module Types exposing (CoinStatus(..), Flags, Model, Msg(..))
 
 import Json.Encode as JE
-import Modules.User as User
-import Navigation exposing (Location)
-import Routing exposing (Route)
 
 
 type alias Model =
-    { userModel : User.Model
-    , route : Route
-    , flags : Flags
+    { flags : Flags
+    , coinStatus : CoinStatus
     }
+
+
+type CoinStatus
+    = Head
+    | Tail
 
 
 type alias Flags =
@@ -18,9 +19,6 @@ type alias Flags =
 
 
 type Msg
-    = Noop
-    | UrlChange Location
-    | NavigateTo Route
-    | UserMsg User.Msg
-    | PingSuccess JE.Value
-    | PingError JE.Value
+    = Flip
+    | FlipSuccess JE.Value
+    | FlipError JE.Value
