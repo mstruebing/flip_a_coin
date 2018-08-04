@@ -1,0 +1,15 @@
+var _user$project$Commands$ping = function (socketUrl) {
+	var payload = _elm_lang$core$Json_Encode$object(
+		{ctor: '[]'});
+	var push = A2(
+		_saschatimme$elm_phoenix$Phoenix_Push$onError,
+		_user$project$Types$PingError,
+		A2(
+			_saschatimme$elm_phoenix$Phoenix_Push$onOk,
+			_user$project$Types$PingSuccess,
+			A2(
+				_saschatimme$elm_phoenix$Phoenix_Push$withPayload,
+				payload,
+				A2(_saschatimme$elm_phoenix$Phoenix_Push$init, 'room', 'room:ping'))));
+	return A2(_saschatimme$elm_phoenix$Phoenix$push, socketUrl, push);
+};

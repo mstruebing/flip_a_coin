@@ -3,6 +3,7 @@ defmodule FlipACoinWeb.UserSocket do
 
   ## Channels
   # channel "room:*", FlipACoinWeb.RoomChannel
+  channel "flip_a_coin:*", FlipACoinWeb.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
