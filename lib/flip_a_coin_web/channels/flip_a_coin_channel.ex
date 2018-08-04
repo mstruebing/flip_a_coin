@@ -12,8 +12,8 @@ defmodule FlipACoinWeb.FlipACoinChannel do
   end
 
   # Used to flip a coin
-  def handle_in("flip", payload, socket) do
-    {:reply, {:ok, %{coinStatus: flip}}, socket}
+  def handle_in("flip", _payload, socket) do
+    {:reply, {:ok, %{coinStatus: flip()}}, socket}
   end
 
   # Channels can be used in a request/response fashion

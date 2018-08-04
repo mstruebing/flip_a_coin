@@ -30,3 +30,4 @@ npm-debug.log
 elm-stuff/
 # Compiled Elm module
 /assets/js/main.js
+assets/js/main.js
