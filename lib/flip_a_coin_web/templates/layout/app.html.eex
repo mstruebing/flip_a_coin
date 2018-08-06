@@ -7,11 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello PhoenixElmWebsocketBoilerplate!</title>
+    <title>Flip A Coin!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
-  <body>
+  <body class="container-fluid">
     <%= render @view_module, @view_template, assigns %>
 
     <script>window.socketUrl = '<%= FlipACoinWeb.LayoutView.socket_url %>'</script>
