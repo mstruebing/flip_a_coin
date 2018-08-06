@@ -31,4 +31,4 @@ type Msg
     = Flip
     | FlipSuccess JE.Value
     | FlipError JE.Value
-    | PrintStatistics JE.Value
+    | GetStatistics JE.Value

@@ -26,7 +26,7 @@ update msg model =
         FlipError err ->
             ( { model | errorMsg = toString err }, Cmd.none )
 
-        PrintStatistics result ->
+        GetStatistics result ->
             let
                 maybeStatistics =
                     JD.decodeValue statisticsDecoder result

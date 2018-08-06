@@ -12,12 +12,8 @@
   </head>
 
   <body>
-    <div class="container">
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
+    <%= render @view_module, @view_template, assigns %>
 
-    </div> <!-- /container -->
     <script>window.socketUrl = '<%= FlipACoinWeb.LayoutView.socket_url %>'</script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>

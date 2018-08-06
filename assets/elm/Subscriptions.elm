@@ -19,5 +19,5 @@ socket socketUrl =
 contacts : Channel Msg
 contacts =
     Channel.init "flip_a_coin"
-        |> Channel.on "shout:statistics" PrintStatistics
+        |> Channel.on "shout:statistics" GetStatistics
         |> Channel.withDebug

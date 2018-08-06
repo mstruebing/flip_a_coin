@@ -8,5 +8,5 @@ import Types exposing (Model, Msg(..))
 
 view : Model -> Html Msg
 view model =
-    div [ class "page", onClick Flip ]
+    div [ class "app", onClick Flip ]
         [ text <| toString model.coinStatus ]

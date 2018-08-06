@@ -7,6 +7,7 @@ defmodule FlipACoinWeb.FlipACoinChannel do
 
   def join("flip_a_coin", payload, socket) do
     if authorized?(payload) do
+      send(self(), :after_join)
       {:ok, socket}
     else
       {:error, %{reason: "unauthorized"}}
@@ -18,21 +19,13 @@ defmodule FlipACoinWeb.FlipACoinChannel do
     flip = flip()
 
     spawn(fn -> saveFlip(flip) end)
-    shoutStatistics(socket)
+    spawn(fn -> shoutStatistics(socket) end)
 
     {:reply, {:ok, %{:coinStatus => flip}}, socket}
   end
 
-  # Channels can be used in a request/response fashion
-  # by sending replies to requests from the client
-  def handle_in("ping", payload, socket) do
-    {:reply, {:ok, payload}, socket}
-  end
-
-  # It is also common to receive messages from the client and
-  # broadcast to everyone in the current topic (flip_a_coin:lobby).
-  def handle_in("shout", payload, socket) do
-    broadcast socket, "shout", payload
+  def handle_info(:after_join, socket) do
+    shoutStatistics(socket)
     {:noreply, socket}
   end
 
