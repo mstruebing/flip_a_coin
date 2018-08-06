@@ -16,6 +16,12 @@ initialModel : Flags -> ( Model, Cmd Msg )
 initialModel flags =
     ( { flags = flags
       , coinStatus = Head
+      , statistics =
+            { heads = 0
+            , tails = 0
+            , total = 0
+            }
+      , errorMsg = ""
       }
     , Cmd.none
     )

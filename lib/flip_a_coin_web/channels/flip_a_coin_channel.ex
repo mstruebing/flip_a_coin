@@ -1,6 +1,8 @@
 defmodule FlipACoinWeb.FlipACoinChannel do
   use FlipACoinWeb, :channel
 
+  alias FlipACoin.Flip
+
   require Logger
 
   def join("flip_a_coin", payload, socket) do
@@ -13,7 +15,12 @@ defmodule FlipACoinWeb.FlipACoinChannel do
 
   # Used to flip a coin
   def handle_in("flip", _payload, socket) do
-    {:reply, {:ok, %{coinStatus: flip()}}, socket}
+    flip = flip()
+
+    spawn(fn -> saveFlip(flip) end)
+    shoutStatistics(socket)
+
+    {:reply, {:ok, %{:coinStatus => flip}}, socket}
   end
 
   # Channels can be used in a request/response fashion
@@ -29,11 +36,29 @@ defmodule FlipACoinWeb.FlipACoinChannel do
     {:noreply, socket}
   end
 
-  # Generates random :Head or :Tail
+  # Shouts statistics to every connected socket
+  defp shoutStatistics(socket) do
+    broadcast socket, "shout:statistics", 
+    %{
+      :total => Flip.get_flips(), 
+      :heads => Flip.get_heads(), 
+      :tails => Flip.get_tails()
+    }
+  end
+
+  # Saves the flip to the database as string
+  defp saveFlip(flip) do
+    FlipACoin.Flip.changeset(
+      %FlipACoin.Flip{}, 
+      %{:result => Atom.to_string(flip)})
+    |> FlipACoin.Repo.insert
+  end
+
+  # Generates random :Head or :Tails
   defp flip do
     case Enum.random(0..1)  do
        0 -> :Head
-       1 -> :Tail
+       1 -> :Tails
     end
   end
 

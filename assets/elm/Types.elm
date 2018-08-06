@@ -1,4 +1,4 @@
-module Types exposing (CoinStatus(..), Flags, Model, Msg(..))
+module Types exposing (CoinStatus(..), Flags, Model, Msg(..), Statistics)
 
 import Json.Encode as JE
 
@@ -6,12 +6,21 @@ import Json.Encode as JE
 type alias Model =
     { flags : Flags
     , coinStatus : CoinStatus
+    , statistics : Statistics
+    , errorMsg : String
+    }
+
+
+type alias Statistics =
+    { heads : Int
+    , tails : Int
+    , total : Int
     }
 
 
 type CoinStatus
     = Head
-    | Tail
+    | Tails
 
 
 type alias Flags =
@@ -22,3 +31,4 @@ type Msg
     = Flip
     | FlipSuccess JE.Value
     | FlipError JE.Value
+    | PrintStatistics JE.Value
