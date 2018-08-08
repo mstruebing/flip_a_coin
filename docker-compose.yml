@@ -1,13 +1,23 @@
 version: '3'
 services:
+  elixir:
+    build: ./
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/app
+    depends_on:
+      - postgresql
+    links:
+      - postgresql
+    entrypoint: ./entrypoint.sh
   postgresql:
     image: postgres:10.2
-    ports:
-      - 5432:5432
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: phoenix_elm_websocket_boilerplate_dev
     volumes:
      - ${PWD}/db:/var/lib/postgresql/data
+
 
