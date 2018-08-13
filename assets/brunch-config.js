@@ -1,3 +1,5 @@
+const production = (process.env.MIX_ENV === 'prod' || process.env.ENVIRONMENT === 'production')
+
 exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
@@ -54,7 +56,9 @@ exports.config = {
       mainModules: ['Main.elm'],
       elmFolder: 'elm',
       outputFolder: '../js',
-      makeParameters: ['--warn'],
+      makeParameters: production 
+        ? ['--warn'] 
+        : ['--debug', '--warn'],
     }
   },
 

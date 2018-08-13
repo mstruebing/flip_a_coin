@@ -6,4 +6,4 @@ sudo rm -Rf _build
 cd assets && npm run deploy && cd ..
 
 rsync -ravz ./* maexBox:~/projects/flip.maex.me
-ssh maexBox 'cd ~/projects/flip.maex.me && cp /home/maex/certbot/{fullchain,privkey,cert}.pem /home/maex/projects/flip.maex.me/ && docker-compose restart'
+ssh maexBox 'cd ~/projects/flip.maex.me && docker-compose --file docker-compose-production.yml restart'
